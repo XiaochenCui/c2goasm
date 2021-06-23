@@ -10,9 +10,9 @@ import (
 	"strings"
 )
 
-// readLines reads a whole file into memory
+// ReadLines reads a whole file into memory
 // and returns a slice of its lines.
-func readLines(path string) ([]string, error) {
+func ReadLines(path string) ([]string, error) {
 	file, err := os.Open(path)
 	if err != nil {
 		return nil, err
@@ -27,8 +27,8 @@ func readLines(path string) ([]string, error) {
 	return lines, scanner.Err()
 }
 
-// writeLines writes the lines to the given file.
-func writeLines(lines []string, path string, header bool) error {
+// WriteLines writes the lines to the given file.
+func WriteLines(lines []string, path string, header bool) error {
 	file, err := os.Create(path)
 	if err != nil {
 		return err
@@ -47,7 +47,7 @@ func writeLines(lines []string, path string, header bool) error {
 	return w.Flush()
 }
 
-func process(assembly []string, goCompanionFile string) ([]string, error) {
+func Process(assembly []string, goCompanionFile string) ([]string, error) {
 
 	// Split out the assembly source into subroutines
 	subroutines := segmentSource(assembly)
@@ -96,9 +96,9 @@ func process(assembly []string, goCompanionFile string) ([]string, error) {
 	return result, nil
 }
 
-func stripGoasmComments(file string) {
+func StripGoasmComments(file string) {
 
-	lines, err := readLines(file)
+	lines, err := ReadLines(file)
 	if err != nil {
 		log.Fatalf("readLines: %s", err)
 	}
@@ -110,7 +110,7 @@ func stripGoasmComments(file string) {
 		}
 	}
 
-	err = writeLines(lines, file, false)
+	err = WriteLines(lines, file, false)
 	if err != nil {
 		log.Fatalf("writeLines: %s", err)
 	}
@@ -166,9 +166,9 @@ func compactArray(opcodes []byte) []string {
 	return result
 }
 
-func compactOpcodes(file string) {
+func CompactOpcodes(file string) {
 
-	lines, err := readLines(file)
+	lines, err := ReadLines(file)
 	if err != nil {
 		log.Fatalf("readLines: %s", err)
 	}
@@ -203,7 +203,7 @@ func compactOpcodes(file string) {
 		}
 	}
 
-	err = writeLines(result, file, false)
+	err = WriteLines(result, file, false)
 	if err != nil {
 		log.Fatalf("writeLines: %s", err)
 	}

@@ -57,7 +57,7 @@ func argumentsOnStack(lines []string) StackArgs {
 
 func parseCompanionFile(goCompanion, protoName string) ([]string, []string) {
 
-	gocode, err := readLines(goCompanion)
+	gocode, err := ReadLines(goCompanion)
 	if err != nil {
 		panic(fmt.Sprintf("Failed to read companion go code: %v", err))
 	}

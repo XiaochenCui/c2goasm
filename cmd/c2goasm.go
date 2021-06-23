@@ -22,8 +22,9 @@ import (
 	"log"
 	"os"
 	"os/exec"
-	"github.com/XiaochenCui/c2goasm/lib"
 	"strings"
+
+	"github.com/XiaochenCui/c2goasm/lib"
 )
 
 var (
@@ -56,18 +57,18 @@ func main() {
 	}
 
 	fmt.Println("Processing", flag.Arg(0))
-	lines, err := lib.readLines(flag.Arg(0))
+	lines, err := lib.ReadLines(flag.Arg(0))
 	if err != nil {
 		log.Fatalf("readLines: %s", err)
 	}
 
-	result, err := lib.process(lines, goCompanion)
+	result, err := lib.Process(lines, goCompanion)
 	if err != nil {
 		fmt.Print(err)
 		os.Exit(-1)
 	}
 
-	err = lib.writeLines(result, assemblyFile, true)
+	err = lib.WriteLines(result, assemblyFile, true)
 	if err != nil {
 		log.Fatalf("writeLines: %s", err)
 	}
@@ -82,11 +83,11 @@ func main() {
 	}
 
 	if *stripFlag {
-		lib.stripGoasmComments(assemblyFile)
+		lib.StripGoasmComments(assemblyFile)
 	}
 
 	if *compactFlag {
-		lib.compactOpcodes(assemblyFile)
+		lib.CompactOpcodes(assemblyFile)
 	}
 
 	if *formatFlag {

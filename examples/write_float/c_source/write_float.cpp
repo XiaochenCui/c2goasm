@@ -1,5 +1,6 @@
-#include <iostream>
+#include <cstring>
 
 void write_float(float* v, char* buffer) {
-    cout << "Hello World!";
+    buffer[0] = 2;
+    memcpy(buffer+1, v, sizeof(float));
 }

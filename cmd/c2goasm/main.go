@@ -40,6 +40,7 @@ func main() {
 	flag.Parse()
 
 	if flag.NArg() < 2 {
+		fmt.Println("Xiaochen Cui Edition...")
 		fmt.Printf("error: not enough input files specified\n\n")
 		fmt.Println("usage: c2goasm /path/to/c-project/build/SomeGreatCode.cpp.s SomeGreatCode_amd64.s")
 		return

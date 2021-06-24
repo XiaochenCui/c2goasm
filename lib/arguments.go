@@ -58,12 +58,12 @@ func argumentsOnStack(lines []string) StackArgs {
 func parseCompanionFile(goCompanion, protoName string) ([]string, []string) {
 
 	gocode, err := ReadLines(goCompanion)
+	fmt.Println(gocode)
 	if err != nil {
 		panic(fmt.Sprintf("Failed to read companion go code: %v", err))
 	}
 
 	for _, goline := range gocode {
-
 		ok, args, rets, err := getGolangArgs(protoName, goline)
 		if err != nil {
 			panic(fmt.Sprintf("Error: %v", err))
@@ -82,7 +82,7 @@ func getGolangArgs(protoName, goline string) (isFunc bool, args, rets []string, 
 
 	// Search for name of function and arguments
 	if match := regexpFuncAndArgs.FindStringSubmatch(goline); len(match) > 2 {
-		if match[1] == "_"+protoName {
+		if match[1] == protoName {
 
 			args, rets = []string{}, []string{}
 			if match[2] != "" {

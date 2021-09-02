@@ -17,4 +17,7 @@ related issue:
 https://github.com/golang/go/issues/23749
 
 solution:
+
+```bash
 go env -w "CGO_CFLAGS_ALLOW=-mfma"
+```

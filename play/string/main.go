@@ -1,0 +1,11 @@
+package main
+
+import "fmt"
+
+func main() {
+	// origin_bs := []byte{0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x50}
+	origin_bs := []byte{0x41}
+	s := string(origin_bs)
+	origin_bs[0] = 75
+	fmt.Println(s)
+}
